@@ -29,31 +29,10 @@ pipeline:
                     command: |-
                       npm install
                       npm test
-    - stage:
-        name: das
-        identifier: das
-        description: ""
-        type: CI
-        spec:
-          cloneCodebase: false
-          platform:
-            os: Linux
-            arch: Amd64
-          runtime:
-            type: Cloud
-            spec: {}
-          execution:
-            steps:
-              - step:
-                  type: Run
-                  name: Run_1
-                  identifier: Run_1
-                  spec:
-                    shell: Sh
-                    command: echo hello
   properties:
     ci:
       codebase:
         connectorRef: account.Github_OAuth_1704185770842
         repoName: Flows-Convergence/todo-app-example
         build: <+input>
+  notificationRules: []
