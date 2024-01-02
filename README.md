@@ -22,7 +22,7 @@ npm install
 node app.js
 ```
 
-Visit http://localhost:8080 in your browser
+Visit http://localhost:8080 in your browser 
 
 ## Test
 
