@@ -4,16 +4,43 @@ pipeline:
   projectIdentifier: default_project
   orgIdentifier: default
   tags: {}
-  properties:
-    ci:
-      codebase:
-        connectorRef: account.Github_OAuth_1704185770842
-        repoName: Flows-Convergence/todo-app-example
-        build: <+input>
   stages:
     - stage:
-        name: CD Deploy
-        identifier: CD_Deploy
+        name: Test and Build
+        identifier: Test_and_Build
+        description: ""
+        type: CI
+        spec:
+          cloneCodebase: true
+          platform:
+            os: Linux
+            arch: Amd64
+          runtime:
+            type: Cloud
+            spec: {}
+          execution:
+            steps:
+              - step:
+                  type: Run
+                  name: test
+                  identifier: test
+                  spec:
+                    shell: Sh
+                    command: |-
+                      npm install
+                      npm test
+              - step:
+                  type: BuildAndPushDockerRegistry
+                  name: BuildAndPushDockerRegistry_1
+                  identifier: BuildAndPushDockerRegistry_1
+                  spec:
+                    connectorRef: account.harnessImage
+                    repo: repo1
+                    tags:
+                      - fsdfs
+    - stage:
+        name: deploy
+        identifier: deploy
         description: ""
         type: Deployment
         spec:
@@ -50,3 +77,9 @@ pipeline:
                 - AllErrors
               action:
                 type: StageRollback
+  properties:
+    ci:
+      codebase:
+        connectorRef: account.Github_OAuth_1704185770842
+        repoName: Flows-Convergence/todo-app-example
+        build: <+input>
