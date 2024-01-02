@@ -13,7 +13,7 @@ git clone https://github.com/thobalose/todo-list-app.git ; cd todo-list-app/
 ```
 
 ```sh
-npm install
+npm install 
 ```
 
 ## Run
