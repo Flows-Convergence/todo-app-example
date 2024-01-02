@@ -46,10 +46,15 @@ pipeline:
           execution:
             steps:
               - step:
-                  type: K8sDryRun
-                  name: K8sDryRun_1
-                  identifier: K8sDryRun_1
-                  spec: {}
+                  type: ShellScriptProvision
+                  name: ShellScriptProvision_1
+                  identifier: ShellScriptProvision_1
+                  spec:
+                    source:
+                      type: Inline
+                      spec:
+                        script: echo hello
+                    environmentVariables: []
                   timeout: 10m
             rollbackSteps:
               - step:
