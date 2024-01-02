@@ -35,4 +35,21 @@ pipeline:
         connectorRef: account.Github_OAuth_1704185770842
         repoName: Flows-Convergence/todo-app-example
         build: <+input>
-  notificationRules: []
+  notificationRules:
+    - name: DevRev Webhook
+      identifier: DevRev_Webhook
+      pipelineEvents:
+        - type: AllEvents
+        - type: PipelineStart
+        - type: PipelineEnd
+        - type: PipelineSuccess
+        - type: PipelineFailed
+        - type: StageFailed
+        - type: StageSuccess
+        - type: StageStart
+        - type: StepFailed
+      notificationMethod:
+        type: Webhook
+        spec:
+          webhookUrl: https://api.devrev.ai/hidden/dev-orgs/DEV-1AJCBQFDh/event-source-webhooks/custom/712b8496-add8-4572-91f8-76f6f54b5760?branch=<+trigger.targetBranch>&prTitle=<+trigger.prTitle>&prBody=<+eventPayload.pull_request.body>&eventType=<+trigger.header['X-GitHub-Event']>&commit=<+eventPayload.head_commit.message>
+      enabled: true
