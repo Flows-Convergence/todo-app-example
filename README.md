@@ -1,7 +1,7 @@
 # Todo list exercise
 
 ## Prerequisites 
-
+These are the prereq
 - [nodejs](https://nodejs.org/en/)
 > - [docker](https://docs.docker.com/)
 > - [minikube](https://kubernetes.io/docs/tasks/tools/install-minikube/) or any cloud provider to create a cluster
